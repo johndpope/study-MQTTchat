@@ -12,9 +12,11 @@
 		377460C61DA0AB2F009B0195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377460C41DA0AB2F009B0195 /* Main.storyboard */; };
 		377460C81DA0AB2F009B0195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377460C71DA0AB2F009B0195 /* Assets.xcassets */; };
 		377460CB1DA0AB2F009B0195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377460C91DA0AB2F009B0195 /* LaunchScreen.storyboard */; };
+		77D4BEF95E3C64A4522A731E /* Pods_MQTTchat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA203C3C460BFD54A60A025C /* Pods_MQTTchat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14BC7FA6E8D82238849DED82 /* Pods-MQTTchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTchat/Pods-MQTTchat.release.xcconfig"; sourceTree = "<group>"; };
 		377460BD1DA0AB2F009B0195 /* MQTTchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MQTTchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377460C01DA0AB2F009B0195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		377460C21DA0AB2F009B0195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		377460C71DA0AB2F009B0195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		377460CA1DA0AB2F009B0195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		377460CC1DA0AB2F009B0195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A368DF6EFB40BFAA2A27089A /* Pods-MQTTchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTchat/Pods-MQTTchat.debug.xcconfig"; sourceTree = "<group>"; };
+		EA203C3C460BFD54A60A025C /* Pods_MQTTchat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQTTchat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77D4BEF95E3C64A4522A731E /* Pods_MQTTchat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2ACAAAA358D2209D855F4A6D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA203C3C460BFD54A60A025C /* Pods_MQTTchat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		377460B41DA0AB2F009B0195 = {
 			isa = PBXGroup;
 			children = (
 				377460BF1DA0AB2F009B0195 /* MQTTchat */,
 				377460BE1DA0AB2F009B0195 /* Products */,
+				D4AAFE908AD6BFB7456A9A48 /* Pods */,
+				2ACAAAA358D2209D855F4A6D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +79,15 @@
 			path = MQTTchat;
 			sourceTree = "<group>";
 		};
+		D4AAFE908AD6BFB7456A9A48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A368DF6EFB40BFAA2A27089A /* Pods-MQTTchat.debug.xcconfig */,
+				14BC7FA6E8D82238849DED82 /* Pods-MQTTchat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 377460CF1DA0AB2F009B0195 /* Build configuration list for PBXNativeTarget "MQTTchat" */;
 			buildPhases = (
+				082665A5421A989272BACD15 /* [CP] Check Pods Manifest.lock */,
 				377460B91DA0AB2F009B0195 /* Sources */,
 				377460BA1DA0AB2F009B0195 /* Frameworks */,
 				377460BB1DA0AB2F009B0195 /* Resources */,
+				23852F8DF8D852DA850D5145 /* [CP] Embed Pods Frameworks */,
+				231B4704CE973B6E18E37C09 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		082665A5421A989272BACD15 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		231B4704CE973B6E18E37C09 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MQTTchat/Pods-MQTTchat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		23852F8DF8D852DA850D5145 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MQTTchat/Pods-MQTTchat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		377460B91DA0AB2F009B0195 /* Sources */ = {
@@ -258,6 +333,7 @@
 		};
 		377460D01DA0AB2F009B0195 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A368DF6EFB40BFAA2A27089A /* Pods-MQTTchat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MQTTchat/Info.plist;
@@ -270,6 +346,7 @@
 		};
 		377460D11DA0AB2F009B0195 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14BC7FA6E8D82238849DED82 /* Pods-MQTTchat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MQTTchat/Info.plist;
@@ -299,6 +376,7 @@
 				377460D11DA0AB2F009B0195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
