@@ -12,6 +12,7 @@
 		377460C61DA0AB2F009B0195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377460C41DA0AB2F009B0195 /* Main.storyboard */; };
 		377460C81DA0AB2F009B0195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377460C71DA0AB2F009B0195 /* Assets.xcassets */; };
 		377460CB1DA0AB2F009B0195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377460C91DA0AB2F009B0195 /* LaunchScreen.storyboard */; };
+		377460D31DA3A694009B0195 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377460D21DA3A694009B0195 /* Const.swift */; };
 		77D4BEF95E3C64A4522A731E /* Pods_MQTTchat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA203C3C460BFD54A60A025C /* Pods_MQTTchat.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		377460C71DA0AB2F009B0195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		377460CA1DA0AB2F009B0195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		377460CC1DA0AB2F009B0195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		377460D21DA3A694009B0195 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		A368DF6EFB40BFAA2A27089A /* Pods-MQTTchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTchat/Pods-MQTTchat.debug.xcconfig"; sourceTree = "<group>"; };
 		EA203C3C460BFD54A60A025C /* Pods_MQTTchat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQTTchat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				377460C71DA0AB2F009B0195 /* Assets.xcassets */,
 				377460C91DA0AB2F009B0195 /* LaunchScreen.storyboard */,
 				377460CC1DA0AB2F009B0195 /* Info.plist */,
+				377460D21DA3A694009B0195 /* Const.swift */,
 			);
 			path = MQTTchat;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			files = (
 				377460C31DA0AB2F009B0195 /* ViewController.swift in Sources */,
 				377460C11DA0AB2F009B0195 /* AppDelegate.swift in Sources */,
+				377460D31DA3A694009B0195 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
