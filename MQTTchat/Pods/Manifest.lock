@@ -1,7 +1,7 @@
 PODS:
   - Moscapsule (0.5.2)
   - OpenSSL-Universal (1.0.1.19)
-  - SlackTextViewController (1.9.4)
+  - SlackTextViewController (1.9.5)
 
 DEPENDENCIES:
   - Moscapsule (from `https://github.com/flightonary/Moscapsule.git`)
@@ -20,7 +20,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Moscapsule: 16da766e698792911aafd11d9a26c6dbc42199f4
   OpenSSL-Universal: 07489b0316f0f4f53c928e402e2ecbbedf96d93b
-  SlackTextViewController: d490f354dba963bc469a6b9ce3213978eaed67a5
+  SlackTextViewController: fbcdadbb8090673f604484ff5b6eb8d77baed42a
 
 PODFILE CHECKSUM: bfae0e9d587fdd40130d914669607bb8c9bd3810
 
