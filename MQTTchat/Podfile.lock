@@ -1,30 +1,41 @@
 PODS:
+  - Alamofire (4.0.1)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - Moscapsule (0.5.2)
   - OpenSSL-Universal (1.0.1.19)
+  - SwiftProtobuf (0.9.24)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - JSQMessagesViewController
   - Moscapsule (from `https://github.com/flightonary/Moscapsule.git`)
   - OpenSSL-Universal (~> 1.0.1.18)
+  - SwiftProtobuf (from `https://github.com/apple/swift-protobuf.git`)
 
 EXTERNAL SOURCES:
   Moscapsule:
     :git: https://github.com/flightonary/Moscapsule.git
+  SwiftProtobuf:
+    :git: https://github.com/apple/swift-protobuf.git
 
 CHECKOUT OPTIONS:
   Moscapsule:
     :commit: fbedd47dc5fd976ea495fc9a44d40414c0422854
     :git: https://github.com/flightonary/Moscapsule.git
+  SwiftProtobuf:
+    :commit: 47e030e3aaed53b4c4136920876eae7fd6a272f9
+    :git: https://github.com/apple/swift-protobuf.git
 
 SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Moscapsule: 16da766e698792911aafd11d9a26c6dbc42199f4
   OpenSSL-Universal: 07489b0316f0f4f53c928e402e2ecbbedf96d93b
+  SwiftProtobuf: 06ee8152e44a46f50bb5c3d40697c49930a69c6d
 
-PODFILE CHECKSUM: e5d8d2d8f2a3c6d4848a267d1cce71b093baaf3d
+PODFILE CHECKSUM: af26e89c38b349b754d46960f3fcda760214fd36
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

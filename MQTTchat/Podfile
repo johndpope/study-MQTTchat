@@ -6,4 +6,6 @@ target 'MQTTchat' do
   pod 'Moscapsule', :git => 'https://github.com/flightonary/Moscapsule.git'
   pod 'OpenSSL-Universal', '~> 1.0.1.18'
   pod 'JSQMessagesViewController'
+  pod 'SwiftProtobuf', git: 'https://github.com/apple/swift-protobuf.git'
+  pod 'Alamofire', '~> 4.0'
 end
