@@ -1,12 +1,14 @@
 PODS:
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - Moscapsule (0.5.2)
   - OpenSSL-Universal (1.0.1.19)
-  - SlackTextViewController (1.9.5)
 
 DEPENDENCIES:
+  - JSQMessagesViewController
   - Moscapsule (from `https://github.com/flightonary/Moscapsule.git`)
   - OpenSSL-Universal (~> 1.0.1.18)
-  - SlackTextViewController
 
 EXTERNAL SOURCES:
   Moscapsule:
@@ -14,14 +16,15 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Moscapsule:
-    :commit: fda272f195e35c86740e00fe2163c227ed6383e1
+    :commit: fbedd47dc5fd976ea495fc9a44d40414c0422854
     :git: https://github.com/flightonary/Moscapsule.git
 
 SPEC CHECKSUMS:
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Moscapsule: 16da766e698792911aafd11d9a26c6dbc42199f4
   OpenSSL-Universal: 07489b0316f0f4f53c928e402e2ecbbedf96d93b
-  SlackTextViewController: fbcdadbb8090673f604484ff5b6eb8d77baed42a
 
-PODFILE CHECKSUM: bfae0e9d587fdd40130d914669607bb8c9bd3810
+PODFILE CHECKSUM: e5d8d2d8f2a3c6d4848a267d1cce71b093baaf3d
 
 COCOAPODS: 1.0.1

@@ -72,10 +72,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Chat Table View Controller-->
+        <!--View Controller-->
         <scene sceneID="MYe-7n-hDA">
             <objects>
-                <viewController id="0dn-t4-rla" customClass="ChatTableViewController" customModule="MQTTchat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0dn-t4-rla" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6R1-ir-bJW"/>
                         <viewControllerLayoutGuide type="bottom" id="m22-gm-vcC"/>
@@ -88,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rep-Ea-iOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850" y="36"/>
+            <point key="canvasLocation" x="855" y="36"/>
         </scene>
     </scenes>
 </document>
