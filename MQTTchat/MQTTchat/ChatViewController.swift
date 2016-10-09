@@ -12,10 +12,10 @@ import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController {
 
+    private var prevMessageSize = 0
     var messages = [JSQMessage]()
     
     let topic = "/chat/message"
-    let keepAlive: Int32 = 60*5
     var mqttClient: MQTTClient!
     
     // MARK:- view life cycle
@@ -34,6 +34,20 @@ class ChatViewController: JSQMessagesViewController {
         // 最新のメッセージを受信したときに自動スクロールを行うか
         self.automaticallyScrollsToMostRecentMessage = true
         
+        // 表示の更新間隔を設定 // INFO: 同時に複数メッセージを受信したときに重くなるため
+        Timer.scheduledTimer(withTimeInterval: 1.0/15.0, repeats: true) { timer in
+            
+            if self.prevMessageSize < self.messages.count {
+                self.prevMessageSize = self.messages.count
+                
+                // 効果音の再生
+                JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                
+                // 表示の更新
+                self.finishReceivingMessage()
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,15 +56,15 @@ class ChatViewController: JSQMessagesViewController {
         // 接続を確立
         mqttClient = {
             
-            let mqttConfig = MQTTConfig(clientId: self.senderId, host: Const.host, port: Const.port, keepAlive: keepAlive)
+            let mqttConfig = MQTTConfig(clientId: self.senderId, host: Const.host, port: Const.port, keepAlive: 60*5)
             mqttConfig.onMessageCallback = { mqttMessage in
                 DispatchQueue.main.sync {
-                    do {
-                        
-                        let mes = try ChatMessage(protobuf: mqttMessage.payload)
+                    
+                    if let mes = try? ChatMessage(protobuf: mqttMessage.payload) {
                         self.receiveMessage(text: mes.message, senderId: mes.senderId, senderDisplayName: mes.name, date: Date(timeIntervalSince1970: TimeInterval(mes.timestamp)))
-                        
-                    } catch {}
+                    } else {
+                        self.receiveMessage(text: String(describing: mqttMessage.payload), senderId: "unknown", senderDisplayName: "不明なメッセージ", date: Date())
+                    }
                 }
             }
             mqttConfig.onDisconnectCallback = { _ in
@@ -71,28 +85,22 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidDisappear(animated)
     }
     
-    // MARK:- 
+    // MARK:-
     func receiveMessage(text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        
-        // 効果音の再生
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         // メッセージの追加
         let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         self.messages.append(message!)
-        self.finishReceivingMessage()
     }
 
     // MARK:- JSQMessagesViewController method overrides
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
         // 全体にメッセージを送信
-        do {
-            let mes = ChatMessage(timestamp: Int64(date.timeIntervalSince1970), senderId: senderId, name: senderDisplayName, message: text)
-            let payloadData = try mes.serializeProtobuf()
-            mqttClient.publish(payloadData, topic: topic, qos: 2, retain: false)
-        }
-        catch {}
+        let mes = ChatMessage(timestamp: Int64(date.timeIntervalSince1970), senderId: senderId, name: senderDisplayName, message: text)
+        let payloadData = try! mes.serializeProtobuf()
+        mqttClient.publish(payloadData, topic: topic, qos: 2, retain: false)
+    
         self.finishSendingMessage()
     }
 
