@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Moscapsule
 import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController {
 
     var messages = [JSQMessage]()
     
+    let topic = "/chat/message"
+    let keepAlive: Int32 = 60*5
+    var mqttClient: MQTTClient!
     
     // MARK:- view life cycle
     override func viewDidLoad() {
@@ -21,7 +25,7 @@ class ChatViewController: JSQMessagesViewController {
         
         // 自分のIDと名前を設定
         self.senderId = UIDevice.current.identifierForVendor?.uuidString
-        self.senderDisplayName = "Taro"
+        self.senderDisplayName = UIDevice.current.name
         
         // ユーザアイコンサイズの設定
         self.collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
@@ -29,6 +33,42 @@ class ChatViewController: JSQMessagesViewController {
         
         // 最新のメッセージを受信したときに自動スクロールを行うか
         self.automaticallyScrollsToMostRecentMessage = true
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 接続を確立
+        mqttClient = {
+            
+            let mqttConfig = MQTTConfig(clientId: self.senderId, host: Const.host, port: Const.port, keepAlive: keepAlive)
+            mqttConfig.onMessageCallback = { mqttMessage in
+                DispatchQueue.main.sync {
+                    do {
+                        
+                        let mes = try ChatMessage(protobuf: mqttMessage.payload)
+                        self.receiveMessage(text: mes.message, senderId: mes.senderId, senderDisplayName: mes.name, date: Date(timeIntervalSince1970: TimeInterval(mes.timestamp)))
+                        
+                    } catch {}
+                }
+            }
+            mqttConfig.onDisconnectCallback = { _ in
+                self.receiveMessage(text: "切断されました", senderId: "system", senderDisplayName: "system", date: Date())
+            }
+            return MQTT.newConnection(mqttConfig)
+        }()
+        
+        // メッセージの受信を開始
+        mqttClient.subscribe(topic, qos: 2)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        // サーバとの接続を切断
+        mqttClient.disconnect()
+        
+        super.viewDidDisappear(animated)
     }
     
     // MARK:- 
@@ -46,16 +86,14 @@ class ChatViewController: JSQMessagesViewController {
     // MARK:- JSQMessagesViewController method overrides
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        // 効果音の再生
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        // メッセージの追加
-        let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
-        self.messages.append(message!)
+        // 全体にメッセージを送信
+        do {
+            let mes = ChatMessage(timestamp: Int64(date.timeIntervalSince1970), senderId: senderId, name: senderDisplayName, message: text)
+            let payloadData = try mes.serializeProtobuf()
+            mqttClient.publish(payloadData, topic: topic, qos: 2, retain: false)
+        }
+        catch {}
         self.finishSendingMessage()
-        
-        // 山彦
-        self.receiveMessage(text: text, senderId: "aa", senderDisplayName: "Opp", date: Date())
     }
 
     override func didPressAccessoryButton(_ sender: UIButton!) {
@@ -93,7 +131,8 @@ class ChatViewController: JSQMessagesViewController {
         if (indexPath.item % 5 == 0) {
             let message = self.messages[indexPath.item]
             
-            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+            let displayTimeString = JSQMessagesTimestampFormatter.shared().timestamp(for: message.date)!
+            return NSAttributedString(string: displayTimeString, attributes: [NSForegroundColorAttributeName: UIColor.white])
         }
         
         return nil

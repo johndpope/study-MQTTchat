@@ -80,7 +80,7 @@ public struct ChatMessage: ProtobufGeneratedMessage {
     if senderId != "" {return false}
     if name != "" {return false}
     if message != "" {return false}
-    if !unknown.isEmpty {return false}
+//    if !unknown.isEmpty {return false}
     return true
   }
 

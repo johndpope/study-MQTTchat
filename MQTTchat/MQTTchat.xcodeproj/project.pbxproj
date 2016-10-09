@@ -134,6 +134,7 @@
 				TargetAttributes = {
 					377460BC1DA0AB2F009B0195 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = R3M694BK62;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -351,6 +352,7 @@
 			baseConfigurationReference = A368DF6EFB40BFAA2A27089A /* Pods-MQTTchat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = R3M694BK62;
 				INFOPLIST_FILE = MQTTchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sidepelican.MQTTchat;
@@ -364,6 +366,7 @@
 			baseConfigurationReference = 14BC7FA6E8D82238849DED82 /* Pods-MQTTchat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = R3M694BK62;
 				INFOPLIST_FILE = MQTTchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sidepelican.MQTTchat;
