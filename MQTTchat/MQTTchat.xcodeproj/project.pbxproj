@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		377460C11DA0AB2F009B0195 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377460C01DA0AB2F009B0195 /* AppDelegate.swift */; };
-		377460C31DA0AB2F009B0195 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377460C21DA0AB2F009B0195 /* ViewController.swift */; };
 		377460C61DA0AB2F009B0195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377460C41DA0AB2F009B0195 /* Main.storyboard */; };
 		377460C81DA0AB2F009B0195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377460C71DA0AB2F009B0195 /* Assets.xcassets */; };
 		377460CB1DA0AB2F009B0195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377460C91DA0AB2F009B0195 /* LaunchScreen.storyboard */; };
@@ -22,7 +21,6 @@
 		14BC7FA6E8D82238849DED82 /* Pods-MQTTchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTchat/Pods-MQTTchat.release.xcconfig"; sourceTree = "<group>"; };
 		377460BD1DA0AB2F009B0195 /* MQTTchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MQTTchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377460C01DA0AB2F009B0195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		377460C21DA0AB2F009B0195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		377460C51DA0AB2F009B0195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		377460C71DA0AB2F009B0195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		377460CA1DA0AB2F009B0195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,7 +28,6 @@
 		377460D21DA3A694009B0195 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		37C6B4CC1DA9EF600062CBF2 /* ChatModel.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatModel.pb.swift; path = ../../proto/ChatModel.pb.swift; sourceTree = "<group>"; };
 		37C91FED1DA9217E00562EFE /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		37E601FE1DA533230038D00A /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		A368DF6EFB40BFAA2A27089A /* Pods-MQTTchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTchat/Pods-MQTTchat.debug.xcconfig"; sourceTree = "<group>"; };
 		EA203C3C460BFD54A60A025C /* Pods_MQTTchat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MQTTchat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -77,8 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				377460C01DA0AB2F009B0195 /* AppDelegate.swift */,
-				377460C21DA0AB2F009B0195 /* ViewController.swift */,
-				37E601FE1DA533230038D00A /* ChatTableViewController.swift */,
 				37C91FED1DA9217E00562EFE /* ChatViewController.swift */,
 				377460C41DA0AB2F009B0195 /* Main.storyboard */,
 				377460C71DA0AB2F009B0195 /* Assets.xcassets */,
@@ -224,7 +219,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377460C31DA0AB2F009B0195 /* ViewController.swift in Sources */,
 				37C6B4CD1DA9EF600062CBF2 /* ChatModel.pb.swift in Sources */,
 				377460C11DA0AB2F009B0195 /* AppDelegate.swift in Sources */,
 				37C91FEE1DA9217E00562EFE /* ChatViewController.swift in Sources */,
