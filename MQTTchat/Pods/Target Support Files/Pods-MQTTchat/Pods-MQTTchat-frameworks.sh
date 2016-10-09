@@ -89,6 +89,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Moscapsule/Moscapsule.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftProtobuf/SwiftProtobuf.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyDrop/SwiftyDrop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
@@ -96,4 +97,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Moscapsule/Moscapsule.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftProtobuf/SwiftProtobuf.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyDrop/SwiftyDrop.framework"
 fi

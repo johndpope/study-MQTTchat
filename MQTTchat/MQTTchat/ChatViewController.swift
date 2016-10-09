@@ -8,6 +8,7 @@
 
 import UIKit
 import Moscapsule
+import SwiftyDrop
 import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController {
@@ -16,7 +17,7 @@ class ChatViewController: JSQMessagesViewController {
     var messages = [JSQMessage]()
     
     let topic = "/chat/message"
-    var mqttClient: MQTTClient!
+    var mqttClient: MQTTClient?
     
     // MARK:- view life cycle
     override func viewDidLoad() {
@@ -53,63 +54,86 @@ class ChatViewController: JSQMessagesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // 接続を確立
-        mqttClient = {
-            
-            let mqttConfig = MQTTConfig(clientId: self.senderId, host: Const.host, port: Const.port, keepAlive: 60*5)
-            mqttConfig.onMessageCallback = { mqttMessage in
-                DispatchQueue.main.sync {
-                    
-                    if let mes = try? ChatMessage(protobuf: mqttMessage.payload) {
-                        self.receiveMessage(text: mes.message, senderId: mes.senderId, senderDisplayName: mes.name, date: Date(timeIntervalSince1970: TimeInterval(mes.timestamp)))
-                    } else {
-                        self.receiveMessage(text: String(describing: mqttMessage.payload), senderId: "unknown", senderDisplayName: "不明なメッセージ", date: Date())
-                    }
-                }
-            }
-            mqttConfig.onDisconnectCallback = { _ in
-                self.receiveMessage(text: "切断されました", senderId: "system", senderDisplayName: "system", date: Date())
-            }
-            return MQTT.newConnection(mqttConfig)
-        }()
-        
-        // メッセージの受信を開始
-        mqttClient.subscribe(topic, qos: 2)
+        // サーバに接続
+        self.setupMqttConnection()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         
         // サーバとの接続を切断
-        mqttClient.disconnect()
+        mqttClient?.disconnect()
         
         super.viewDidDisappear(animated)
     }
     
     // MARK:-
+    func setupMqttConnection() {
+     
+        // 接続を確立
+        mqttClient = {
+            
+            let mqttConfig = MQTTConfig(clientId: self.senderId, host: Const.host, port: Const.port, keepAlive: 40)
+            mqttConfig.onMessageCallback = { mqttMessage in
+                
+                if let mes = try? ChatMessage(protobuf: mqttMessage.payload) {
+                    self.receiveMessage(text: mes.message, senderId: mes.senderId, senderDisplayName: mes.name, date: Date(timeIntervalSince1970: TimeInterval(mes.timestamp)))
+                } else {
+                    self.receiveMessage(text: String(describing: mqttMessage.payload), senderId: "unknown", senderDisplayName: "不明なメッセージ", date: Date())
+                }
+            }
+            
+            mqttConfig.onConnectCallback = { _ in
+                
+                DispatchQueue.main.async {
+                    Drop.down("接続されました", state: .success)
+                }
+            }
+            
+            mqttConfig.onDisconnectCallback = { _ in
+
+                DispatchQueue.main.async {
+                    Drop.down("切断されました", state: .error)
+                }
+                self.mqttClient = nil
+            }
+            return MQTT.newConnection(mqttConfig)
+        }()
+        
+        // メッセージの受信を開始
+        mqttClient?.subscribe(topic, qos: 2)
+    }
+    
     func receiveMessage(text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
         // メッセージの追加
         let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         self.messages.append(message!)
     }
+}
 
-    // MARK:- JSQMessagesViewController method overrides
+// MARK:- JSQMessagesViewController
+extension ChatViewController {
+    
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
         // 全体にメッセージを送信
         let mes = ChatMessage(timestamp: Int64(date.timeIntervalSince1970), senderId: senderId, name: senderDisplayName, message: text)
         let payloadData = try! mes.serializeProtobuf()
-        mqttClient.publish(payloadData, topic: topic, qos: 2, retain: false)
+        mqttClient?.publish(payloadData, topic: topic, qos: 2, retain: false)
     
         self.finishSendingMessage()
     }
 
     override func didPressAccessoryButton(_ sender: UIButton!) {
         
-        
+        // do nothing
     }
+}
+
+
+// MARK:- JSQMessages CollectionView DataSource
+extension ChatViewController {
     
-    // MARK:- JSQMessages CollectionView DataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
