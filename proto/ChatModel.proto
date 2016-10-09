@@ -1,0 +1,6 @@
+message ChatMessage {
+  required int64  timestamp = 1;
+  required string senderId  = 2;
+  required string name      = 3;
+  required string message   = 4;
+}
