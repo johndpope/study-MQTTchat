@@ -49,6 +49,22 @@ class ChatViewController: JSQMessagesViewController {
             }
         }
         
+        // setup Notifications
+        NotificationCenter.default.addObserver(forName: .UIApplicationDidEnterBackground, object: nil, queue: nil) { notification in
+            self.mqttClient?.disconnect()
+            self.mqttClient = nil
+        }
+        NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: nil) { notification in
+            
+            // 再接続を試みる
+            if self.mqttClient == nil {
+                self.setupMqttConnection()
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +78,7 @@ class ChatViewController: JSQMessagesViewController {
         
         // サーバとの接続を切断
         mqttClient?.disconnect()
+        self.mqttClient = nil
         
         super.viewDidDisappear(animated)
     }
