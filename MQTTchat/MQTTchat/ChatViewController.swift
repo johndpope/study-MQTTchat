@@ -95,7 +95,8 @@ class ChatViewController: JSQMessagesViewController {
                 if let mes = try? ChatMessage(protobuf: mqttMessage.payload) {
                     self.receiveMessage(text: mes.message, senderId: mes.senderId, senderDisplayName: mes.name, date: Date(timeIntervalSince1970: TimeInterval(mes.timestamp)))
                 } else {
-                    self.receiveMessage(text: String(describing: mqttMessage.payload), senderId: "unknown", senderDisplayName: "不明なメッセージ", date: Date())
+                
+                    self.receiveMessage(text: mqttMessage.payloadString, senderId: "unknown", senderDisplayName: "不明なメッセージ", date: Date())
                 }
             }
             
